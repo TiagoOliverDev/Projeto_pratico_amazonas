@@ -27,7 +27,7 @@ Este projeto sobe um MongoDB via Docker com inicializacao automatica do banco `a
 2. No PowerShell, entre na pasta do projeto:
 
 ```powershell
-cd "C:\Users\tiago\OneDrive\Área de Trabalho\Pós Engenharia de dados\Bootcamps\Arquiteto de dados\Módulo Desafio\Pratica"
+cd "C:\Projeto_pratico_amazonas"
 ```
 
 3. Suba o MongoDB:
