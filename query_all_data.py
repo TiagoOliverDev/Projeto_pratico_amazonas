@@ -1,11 +1,8 @@
 import os
 
 from bson.json_util import dumps
-from pymongo import MongoClient
 
-
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://admin:admin123@localhost:27017")
-DB_NAME = os.getenv("MONGO_DB", "amazonas_ecommerce")
+from mongo_connection import create_client, get_database_name
 
 
 def print_collection(db, collection_name: str) -> None:
@@ -21,8 +18,8 @@ def print_collection(db, collection_name: str) -> None:
 
 
 def main() -> None:
-    client = MongoClient(MONGO_URI)
-    db = client[DB_NAME]
+    client = create_client(require_primary=False)
+    db = client[get_database_name()]
 
     for name in ["clientes", "produtos", "pedidos", "carrinho", "avaliacoes"]:
         print_collection(db, name)

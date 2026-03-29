@@ -1,4 +1,7 @@
 FROM mongo:7.0
 
-# Script executed on first container start to initialize database and indexes.
-COPY mongo-init/init.js /docker-entrypoint-initdb.d/01-init.js
+# Scripts used to bootstrap the replica set and initialize the schema.
+COPY mongo-init/init.js /scripts/init.js
+COPY scripts/init-replica.sh /scripts/init-replica.sh
+
+RUN chmod +x /scripts/init-replica.sh

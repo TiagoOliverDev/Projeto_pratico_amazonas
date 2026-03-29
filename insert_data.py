@@ -3,11 +3,8 @@ from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 
 from bson.decimal128 import Decimal128
-from pymongo import MongoClient
 
-
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://admin:admin123@localhost:27017")
-DB_NAME = os.getenv("MONGO_DB", "amazonas_ecommerce")
+from mongo_connection import create_client, get_database_name
 
 
 def dec(value: str) -> Decimal128:
@@ -15,8 +12,8 @@ def dec(value: str) -> Decimal128:
 
 
 def main() -> None:
-    client = MongoClient(MONGO_URI)
-    db = client[DB_NAME]
+    client = create_client(require_primary=True)
+    db = client[get_database_name()]
     now = datetime.now(timezone.utc)
 
     clientes = [
